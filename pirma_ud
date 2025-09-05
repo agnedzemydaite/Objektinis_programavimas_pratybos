@@ -61,3 +61,5 @@ studentas stud_iv(){
     pirmas.gal = double(sum)/double(n)*0.4 + pirmas.egz*0.6;
     return pirmas;
 }
+
+#atnaujinimas
