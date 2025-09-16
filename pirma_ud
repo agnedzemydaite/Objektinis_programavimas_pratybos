@@ -29,6 +29,7 @@ studentas stud_iv_su_n();
 studentas stud_iv_be_n();
 studentas rando();
 int skaiciu_iv(string i);
+int n_iv(string i);
 
 //using namespace std;
 int main()
@@ -52,19 +53,19 @@ int main()
     }
     
     if(pasirinkimas == "1"){
-        cout << "Kiek studentu grupeje? "; n = skaiciu_iv("Kiek studentu grupeje?");
+        cout << "Kiek studentu grupeje? "; n = n_iv("Kiek studentu grupeje?");
         for(auto i = 0; i < n; i++){
             grupe.push_back(stud_iv_su_n());
         }
     }
     else if(pasirinkimas == "2"){
-        cout << "Kiek studentu grupeje? "; n = skaiciu_iv("Kiek studentu grupeje?");
+        cout << "Kiek studentu grupeje? "; n = n_iv("Kiek studentu grupeje?");
         for(auto i = 0; i < n; i++){
             grupe.push_back(stud_iv_be_n());
         }
     }
     else if(pasirinkimas == "3"){
-        cout << "Kiek studentu grupeje? "; n = skaiciu_iv("Kiek studentu grupeje?");
+        cout << "Kiek studentu grupeje? "; n = n_iv("Kiek studentu grupeje?");
         for(auto i = 0; i < n; i++){
             grupe.push_back(rando());
         }
@@ -124,7 +125,7 @@ studentas stud_iv_su_n(){
     cout << "Vardas: "; cin >> pirmas.var;
     cout << "Pavarde: "; cin >> pirmas.pav;
     cin.ignore();
-    cout << "Kiek pazymiu turi studentas: " << pirmas.var << " " << pirmas.pav << ": "; n = skaiciu_iv("Kiek pazymiu turi studentas:");
+    cout << "Kiek pazymiu turi studentas: " << pirmas.var << " " << pirmas.pav << ": "; n = n_iv("Kiek pazymiu turi studentas:");
     cout << "Iveskite studento pazymius: " << endl;
     for(int i = 0; i < n; i++)
     {
@@ -219,6 +220,34 @@ studentas rando(){
 }
 
 int skaiciu_iv(string i){
+    string x;
+    bool tiesa = true;
+    while(true){
+        tiesa = true;
+        getline(cin, x);
+        if(x.empty()){
+            cout << "Padarete klaida, bandykite is naujo" << endl;
+            cout << i;
+            continue;
+        }
+        for(char ch : x){
+            if(!isdigit(ch)){
+                tiesa = false;
+                cout << "Padarete klaida, bandykite is naujo" << endl;
+                cout << i << " ";
+                break;
+            }
+        }
+        if(tiesa != false && (stoi(x) <= 0 || stoi(x) > 10)){
+            cout << "Padarete klaida, bandykite is naujo" << endl;
+            cout << i << " ";
+            continue;
+        }
+        if(tiesa) return stoi(x);
+    }
+}
+
+int n_iv(string i){
     string x;
     bool tiesa = true;
     while(true){
