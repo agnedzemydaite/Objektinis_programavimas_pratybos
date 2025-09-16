@@ -159,7 +159,15 @@ studentas stud_iv_be_n(){
     while(true) {
         cout << n + 1 << " ";
         getline(cin, laik);
-        if(laik.empty()) break;
+        if(laik.empty()){
+            if(pirmas.paz.size() == 0){
+                cout <<"Turite ivesti bent viena skaiciu" << endl;
+                continue;
+            }
+            else{
+                break;
+            }
+        }
         else{
             for(char ch : laik){
                 if(!isdigit(ch)){
@@ -265,6 +273,11 @@ int n_iv(string i){
                 cout << i << " ";
                 break;
             }
+        }
+        if(tiesa != false && stoi(x) <= 0){
+            cout << "Skaicius negali buti mazesnis arba lygus 0" << endl;
+            cout << i << " ";
+            continue;
         }
         if(tiesa) return stoi(x);
     }
