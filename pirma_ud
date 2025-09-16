@@ -1,4 +1,3 @@
-// Example program
 #include <iostream>
 #include <string>
 #include <vector>
@@ -12,6 +11,7 @@ using std::setw;
 using std::left;
 using std::right;
 using std::sort;
+using std::getline;
 
 struct studentas{
     string var;
@@ -22,17 +22,34 @@ struct studentas{
     double med;
     };
 
-studentas stud_iv();
+studentas stud_iv_su_n();
+studentas stud_iv_be_n();
 
 //using namespace std;
 int main()
 {
-    int n;
+    int n = 0;
     vector <studentas> grupe;
     char pasirinkimas = '0';
+    string n_pasirinkimas = " ";
+    cout << "Ar norite namu darbu skaiciu ivesti is anksto? (taip/ne)" << endl;
+    while(n_pasirinkimas != "taip" && n_pasirinkimas != "ne"){
+        cin >> n_pasirinkimas;
+        if(n_pasirinkimas != "taip" && n_pasirinkimas != "ne"){
+            cout << "Padarete klaida, iveskite taip/ne" << endl;
+        }
+    }
     cout << "Kiek studentu grupeje? "; cin >> n;
-    for(auto i = 0; i < n; i++){
-        grupe.push_back(stud_iv());
+    if(n_pasirinkimas == "taip"){
+        for(auto i = 0; i < n; i++){
+            grupe.push_back(stud_iv_su_n());
+        }
+    }
+    else{
+        cout << "Namu darbu skaicius bus ivedamas laisvai, kol nepaspausite Enter." << endl;
+        for(auto i = 0; i < n; i++){
+            grupe.push_back(stud_iv_be_n());
+        }
     }
 
     if(n > 0){
@@ -78,7 +95,7 @@ int main()
     return 0;
 }
 
-studentas stud_iv(){
+studentas stud_iv_su_n(){
     int n, laik_paz, sum = 0;
     studentas pirmas;
     cout << "Iveskite studento duomenis" << endl;
@@ -106,3 +123,35 @@ studentas stud_iv(){
     return pirmas;
 }
 
+studentas stud_iv_be_n(){
+    int n = 0, laik_paz, sum = 0;
+    string laik;
+    studentas pirmas;
+    cout << "Iveskite studento duomenis" << endl;
+    cout << "Vardas: "; cin >> pirmas.var;
+    cout << "Pavarde: "; cin >> pirmas.pav;
+    cout << "Iveskite studento pazymius: " << endl;
+    cin.ignore();
+    while(true) {
+        cout << n + 1 << " ";
+        getline(cin, laik);
+        if(laik.empty()) break;
+        laik_paz = stoi(laik);
+        n++;
+        pirmas.paz.push_back(laik_paz);
+        sum += laik_paz;
+    }
+    
+    cout << "Iveskite egzamino pazymi: "; cin >> pirmas.egz;
+    pirmas.gal = double(sum)/double(n)*0.4 + pirmas.egz*0.6;
+    vector <int> isrikiuoti_paz = pirmas.paz;
+    isrikiuoti_paz.push_back(pirmas.egz);
+    sort(isrikiuoti_paz.begin(), isrikiuoti_paz.end());
+    n++;
+    if (n % 2 == 0) {
+        pirmas.med = (isrikiuoti_paz[n/2 - 1] + isrikiuoti_paz[n/2]) / 2.0;
+    } else {
+        pirmas.med = isrikiuoti_paz[n/2];
+    }
+    return pirmas;
+}
