@@ -1,3 +1,4 @@
+// Example program
 #include <iostream>
 #include <string>
 #include <vector>
@@ -28,20 +29,53 @@ int main()
 {
     int n;
     vector <studentas> grupe;
+    char pasirinkimas = '0';
     cout << "Kiek studentu grupeje? "; cin >> n;
     for(auto i = 0; i < n; i++){
         grupe.push_back(stud_iv());
     }
 
-
-    for(auto pirmas:grupe){
-        cout << "Studento info: " << endl;
-        cout << setw(10) << left <<pirmas.var <<"|"<< setw(15) << right << pirmas.pav << "|";
-        for(auto& i : pirmas.paz) cout<<setw(3) << i << "|";
-        cout << setw(5) << pirmas.egz << "|" << setw(10) << pirmas.gal << "|" << setw(10) << pirmas.med << endl;
+    if(n > 0){
+        cout << "Jei norite, kad atspausdintu tik vidurki iveskite 1" << endl;
+        cout << "Jei norite, kad atspausdintu tik mediana iveskite 2" << endl;
+        cout << "Jei norite, kad atspausdintu ir vidurki ir mediana iveskite 3" << endl;
+        while(pasirinkimas != '1' && pasirinkimas != '2' && pasirinkimas != '3'){
+            cin >> pasirinkimas;
+            if(pasirinkimas != '1' && pasirinkimas != '2' && pasirinkimas != '3'){
+                cout << "Padarete klaida, iveskite skaiciu is naujo:" << endl;
+            }
+        }
     }
-    
-        
+    cout << setw(10) << left << "Vardas" << setw(15) << left << "Pavarde";
+
+    if (pasirinkimas == '1') {
+        cout << setw(17) << left << "Galutinis (Vid.)" << endl;
+        for(int i = 0; i < 42; i++) cout << "-";
+        cout << endl;
+        for(auto pirmas:grupe){
+            cout << setw(10) << left << pirmas.var << setw(15) << left << pirmas.pav;
+            cout << setw(17) << pirmas.gal << endl;
+        }
+    }
+    else if (pasirinkimas == '2') {
+        cout << setw(19) << left << "/ Galutinis (Med.)" << endl;
+        for(int i = 0; i < 44; i++) cout << "-";
+        cout << endl;
+        for(auto pirmas:grupe){
+            cout << setw(10) << left <<pirmas.var << setw(15) << left << pirmas.pav;
+            cout << setw(19) << pirmas.med << endl;
+        }
+    }
+    else if (pasirinkimas == '3') {
+        cout << setw(19) << left << "Galutinis (Vid.) / " << setw(17) << left << "Galutinis (Med.)" << endl;
+        for(int i = 0; i < 61; i++) cout << "-";
+        cout << endl;
+        for(auto pirmas:grupe){
+            cout << setw(10) << left << pirmas.var << setw(15) << left << pirmas.pav;
+            cout << setw(19) << pirmas.gal << setw(17) << pirmas.med << endl;
+        }
+    }
+    return 0;
 }
 
 studentas stud_iv(){
@@ -51,7 +85,6 @@ studentas stud_iv(){
     cout << "Vardas: "; cin >> pirmas.var;
     cout << "Pavarde: "; cin >> pirmas.pav;
     cout << "Kiek pazymiu turi studentas: " << pirmas.var << " " << pirmas.pav << ": "; cin >> n;
-    cout << n/2;
     cout << "Iveskite studento pazymius: " << endl;
     for(int i = 0; i < n; i++)
     {
@@ -73,5 +106,3 @@ studentas stud_iv(){
     return pirmas;
 }
 
-//pakeitimai
-//prideta mediana
