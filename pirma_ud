@@ -1,9 +1,12 @@
+
 #include <iostream>
 #include <string>
 #include <vector>
 #include <iomanip>
 #include <cctype>
 #include <fstream>
+#include <algorithm>
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -17,224 +20,201 @@ using std::getline;
 using std::isdigit;
 using std::to_string;
 using std::ifstream;
+using std::function;
+using std::fixed;
+using std::setprecision;
 
 struct studentas{
     string var;
     string pav;
     vector <int> paz;
     int egz;
-    double gal;
-    double med;
-    };
+    double gal_vid;
+    double gal_med;
+};
 
-studentas stud_iv_su_n();
-studentas stud_iv_be_n();
+//Studentų duomenų įvedimo funkcijos
+studentas ivest_su_n();
+studentas ivest_be_n();
 studentas rando();
-void stud_iv_f(vector <studentas> & studentai, int & stud_n);
+void ivest_f(vector <studentas> & studentai, int & stud_n);
+void stud_iv(vector <studentas> & studentai, int & n, function<studentas()> funkc);
+
+//Balų, vardo/pavardės ir meniu pasirinkimo įvedimo funckijos
 int skaiciu_iv(string i);
 int n_iv(string i);
-bool arskaicius(string i);
-void rikiavimas(vector<studentas> & studentai);
+string vardo_iv();
+int pasirink_iv(int min_r, int max_r);
 
-int main()
-{
+//vidurkio ir medianos galutino balo apskaiciavimo funkcijos
+double vidurkis(studentas s, int n, int sum);
+double mediana(studentas s, int n);
+
+//Papildomos funkcijos
+bool arskaicius(string i);
+void rikiavimas(vector<studentas> & studentai, int pasirinkimas);
+void spausdinimas(vector<studentas> & studentai, int pasirinkimas);
+
+int main(){
+    
+    //užtikrina skirtingą atsitiktinių skaičių gavimą
     srand(static_cast<unsigned int>(time(0)));
-    int n = 0;
-    vector <studentas> grupe;
-    string pasirinkimas = "0";
-    cout << "---- Studentu pazymiu pasirinkimo sistema ----" << endl;
+    
+    int n = 0; //studentų skaičius
+    int pasirinkimas = 0;
+    vector <studentas> studentai;
+    
+    //Pagrindinis meniu
+    cout << "----------------------------------------------------------" << endl;
+    cout << "---------- Studentu pazymiu pasirinkimo sistema ----------" << endl;
+    cout << "----------------------------------------------------------" << endl;
     cout << "1. Studentu ivedimas su zinomu namu darbu skaiciumi (n)." << endl;
     cout << "2. Studentu ivedimas su nezinomu namu darbu skaiciumu (n)." << endl;
     cout << "3. Studentu ivedimas su automatiskai sugeneruotais balais." << endl;
     cout << "4. Studentu ivedimas is failo." << endl;
+    cout << "----------------------------------------------------------" << endl;
     
     cout << endl << "Iveskite savo pasirinkima: ";
-    while(pasirinkimas != "1" && pasirinkimas != "2" && pasirinkimas != "3" && pasirinkimas != "4"){
-        getline(cin, pasirinkimas);
-        if(pasirinkimas != "1" && pasirinkimas != "2" && pasirinkimas != "3" && pasirinkimas != "4"){
-            cout << "Padarete klaida, bandykite is naujo" << endl;
-        }
+    pasirinkimas = pasirink_iv(1, 4);
+    
+    if(pasirinkimas == 1) stud_iv(studentai, n, ivest_su_n);
+    else if(pasirinkimas == 2) stud_iv(studentai, n, ivest_be_n);
+    else if(pasirinkimas == 3) stud_iv(studentai, n, rando);
+    else if(pasirinkimas == 4) ivest_f(studentai, n);
+    
+    if(n == 0){
+        cout << "Studentu skaicius lygus 0. Rezultatai negelimi" << endl;
+    }
+    else{
+        //Vidurkio ir medianos pasirinkimo meniu
+        pasirinkimas = 0;
+        
+        cout << "-----------------------------------------------" << endl;
+        cout << "-- Galutinio balo apskaiciavimo pasirinkimai --" << endl;
+        cout << "-----------------------------------------------" << endl;
+        cout << "1. Vidurkis." << endl;
+        cout << "2. Mediana." << endl;
+        cout << "3. Vidurkis ir mediana." << endl;
+        cout << "-----------------------------------------------" << endl;
+        
+        cout << endl << "Iveskite savo pasirinkima: ";
+        pasirinkimas = pasirink_iv(1, 3);
+        
+        //Rikiavimo pasirinkimo meniu
+        int pasirinkimas_2 = 0;
+        
+        cout << "----------------------------" << endl;
+        cout << "-- Rikiavimo pasirinkimai --" << endl;
+        cout << "----------------------------" << endl;
+        cout << "1. Pagal varda." << endl;
+        cout << "2. Pagal pavarde." << endl;
+        cout << "----------------------------" << endl;
+        
+        cout << endl << "Iveskite savo pasirinkima: ";
+        pasirinkimas_2 = pasirink_iv(1, 3);
+        rikiavimas(studentai, pasirinkimas_2);
+        
+        //Spausdinimas
+        spausdinimas(studentai, pasirinkimas);
     }
     
-    if(pasirinkimas == "1"){
-        cout << "Kiek studentu grupeje? "; n = n_iv("Kiek studentu grupeje?");
-        for(auto i = 0; i < n; i++){
-            grupe.push_back(stud_iv_su_n());
-        }
-    }
-    else if(pasirinkimas == "2"){
-        cout << "Kiek studentu grupeje? "; n = n_iv("Kiek studentu grupeje?");
-        for(auto i = 0; i < n; i++){
-            grupe.push_back(stud_iv_be_n());
-        }
-    }
-    else if(pasirinkimas == "3"){
-        cout << "Kiek studentu grupeje? "; n = n_iv("Kiek studentu grupeje?");
-        for(auto i = 0; i < n; i++){
-            grupe.push_back(rando());
-        }
-    }
-    else if(pasirinkimas == "4"){
-        stud_iv_f(grupe, n);
-    }
-
-
-    if(n > 0){
-        pasirinkimas = "0";
-        cout << "1. Spausdinti tik vidurki." << endl;
-        cout << "2. Spausdinti tik mediana." << endl;
-        cout << "3. Spausdinti ir vidurki, ir mediana." << endl;
-        while(pasirinkimas != "1" && pasirinkimas != "2" && pasirinkimas != "3"){
-            getline(cin, pasirinkimas);
-            if(pasirinkimas != "1" && pasirinkimas != "2" && pasirinkimas != "3"){
-                cout << "Padarete klaida, bandykite is naujo" << endl;
-            }
-        }
-    }
-    rikiavimas(grupe);
-    cout << setw(10) << left << "Vardas" << setw(15) << left << "Pavarde";
-
-    if (pasirinkimas == "1") {
-        cout << setw(17) << left << "Galutinis (Vid.)" << endl;
-        for(int i = 0; i < 42; i++) cout << "-";
-        cout << endl;
-        for(auto pirmas:grupe){
-            cout << setw(10) << left << pirmas.var << setw(15) << left << pirmas.pav;
-            cout << setw(17) << pirmas.gal << endl;
-        }
-    }
-    else if (pasirinkimas == "2") {
-        cout << setw(17) << left << "Galutinis (Med.)" << endl;
-        for(int i = 0; i < 44; i++) cout << "-";
-        cout << endl;
-        for(auto pirmas:grupe){
-            cout << setw(10) << left <<pirmas.var << setw(15) << left << pirmas.pav;
-            cout << setw(17) << pirmas.med << endl;
-        }
-    }
-    else if (pasirinkimas == "3") {
-        cout << setw(19) << left << "Galutinis (Vid.) / " << setw(17) << left << "Galutinis (Med.)" << endl;
-        for(int i = 0; i < 61; i++) cout << "-";
-        cout << endl;
-        for(auto pirmas:grupe){
-            cout << setw(10) << left << pirmas.var << setw(15) << left << pirmas.pav;
-            cout << setw(19) << pirmas.gal << setw(17) << pirmas.med << endl;
-        }
-    }
     return 0;
+    
 }
 
-studentas stud_iv_su_n(){
+//Studentų duomenų įvedimo funkcijos
+studentas ivest_su_n(){
+    
     int n, laik_paz, sum = 0;
-    studentas pirmas;
+    studentas s;
     cout << "Iveskite studento duomenis" << endl;
-    cout << "Vardas: "; cin >> pirmas.var;
-    cout << "Pavarde: "; cin >> pirmas.pav;
-    cin.ignore();
-    cout << "Kiek pazymiu turi studentas: " << pirmas.var << " " << pirmas.pav << ": "; n = n_iv("Kiek pazymiu turi studentas:");
-    cout << "Iveskite studento pazymius: " << endl;
+    cout << "Vardas: "; s.var = vardo_iv();
+    cout << "Pavarde: "; s.pav = vardo_iv();
+    cout << "Kiek pazymiu turi studentas: " << s.var << " " << s.pav << ": "; n = n_iv("Kiek pazymiu turi studentas:");
+    
+    if(n != 0) cout << "Iveskite studento pazymius: " << endl;
+    
     for(int i = 0; i < n; i++)
     {
         cout << i+1 << " "; laik_paz = skaiciu_iv(to_string(i+1));
-        pirmas.paz.push_back(laik_paz);
-        sum += laik_paz; //sum += pirmas.paz[i];
-    }
-    cout << "Iveskite egzamino pazymi: "; pirmas.egz = skaiciu_iv("Iveskite egzamino pazymi:");
-    pirmas.gal = double(sum)/double(n)*0.4 + pirmas.egz*0.6;
-    vector <int> isrikiuoti_paz = pirmas.paz;
-    sort(isrikiuoti_paz.begin(), isrikiuoti_paz.end());
-    double med = 0;
-    if (n % 2 == 0) {
-        med = (isrikiuoti_paz[n/2 - 1] + isrikiuoti_paz[n/2]) / 2.0;
-    } else {
-        med = isrikiuoti_paz[n/2];
-    }
-    pirmas.med = med*0.4+pirmas.egz*0.6;
-    return pirmas;
-}
-
-studentas stud_iv_be_n(){
-    int n = 0, laik_paz, sum = 0;
-    string laik;
-    studentas pirmas;
-    cout << "Iveskite studento duomenis" << endl;
-    cout << "Vardas: "; cin >> pirmas.var;
-    cout << "Pavarde: "; cin >> pirmas.pav;
-    cout << "Iveskite studento pazymius: " << endl;
-    cin.ignore();
-    while(true) {
-        cout << n + 1 << " ";
-        getline(cin, laik);
-        if(laik.empty()){
-            if(pirmas.paz.size() == 0){
-                cout <<"Turite ivesti bent viena skaiciu" << endl;
-                continue;
-            }
-            else{
-                break;
-            }
-        }
-        else{
-            for(char ch : laik){
-                if(!isdigit(ch)){
-                    cout << "Padarete klaida, bandykite is naujo" << endl;
-                    continue;
-                }
-            laik_paz = stoi(laik);
-            n++;
-            pirmas.paz.push_back(laik_paz);
-            sum += laik_paz;
-            
-            }
-        }
+        s.paz.push_back(laik_paz);
+        sum += laik_paz;
     }
     
-    cout << "Iveskite egzamino pazymi: "; pirmas.egz = skaiciu_iv("Iveskite egzamino pazymi:");
-    pirmas.gal = double(sum)/double(n)*0.4 + pirmas.egz*0.6;
-    vector <int> isrikiuoti_paz = pirmas.paz;
-    sort(isrikiuoti_paz.begin(), isrikiuoti_paz.end());
-    double med = 0;
-    if (n % 2 == 0) {
-        med = (isrikiuoti_paz[n/2 - 1] + isrikiuoti_paz[n/2]) / 2.0;
-    } else {
-        med = isrikiuoti_paz[n/2];
+    cout << "Iveskite egzamino pazymi: "; s.egz = skaiciu_iv("Iveskite egzamino pazymi:");
+    s.gal_vid = vidurkis(s, n, sum);
+    s.gal_med = mediana(s, n);
+    
+    return s;
+}
+
+studentas ivest_be_n(){
+    int n = 0, paz, sum = 0;
+    string laik_paz;
+    studentas s;
+    cout << "Iveskite studento duomenis" << endl;
+    cout << "Vardas: "; s.var = vardo_iv();
+    cout << "Pavarde: "; s.pav = vardo_iv();
+    cout << "Iveskite studento pazymius: " << endl;
+    
+    while(true){
+        cout << n + 1 << " ";
+        getline(cin, laik_paz);
+        if(laik_paz.empty()) break;
+        
+        else{
+            bool neskaicius = false;
+            for(char ch : laik_paz){
+                if(!isdigit(ch)){
+                    neskaicius = true;
+                    break;
+                }
+            }
+            
+            if(neskaicius == true){
+                cout << "Padarete klaida, bandykite is naujo " << endl;
+                continue;
+            }
+            
+            paz = stoi(laik_paz);
+            if( paz == 0 || paz > 10){
+                cout << "Padarete klaida, bandykite is naujo " << endl;
+                continue;
+            }
+            s.paz.push_back(paz);
+            n++;
+            sum += paz;
+            
+        }
     }
-    pirmas.med = med*0.4+pirmas.egz*0.6;
-    return pirmas;
+    cout << "Iveskite egzamino pazymi: "; s.egz = skaiciu_iv("Iveskite egzamino pazymi:");
+    s.gal_vid = vidurkis(s, n, sum);
+    s.gal_med = mediana(s, n);
+    
+    return s;
 }
 
 studentas rando(){
     int n, laik_paz, sum = 0;
-    studentas pirmas;
+    studentas s;
     cout << "Iveskite studento duomenis" << endl;
-    cout << "Vardas: "; cin >> pirmas.var;
-    cout << "Pavarde: "; cin >> pirmas.pav;
-    cin.ignore();
+    cout << "Vardas: "; s.var = vardo_iv();
+    cout << "Pavarde: "; s.pav = vardo_iv();
     n = rand() % 21;
     for(int i = 0; i < n; i++)
     {
-        cout << i+1 << " ";
         laik_paz = rand() % 10 + 1;
-        cout << laik_paz << endl;
-        pirmas.paz.push_back(laik_paz);
-        sum += laik_paz; //sum += pirmas.paz[i];
+        s.paz.push_back(laik_paz);
+        sum += laik_paz;
     }
-    pirmas.egz = rand() % 10 + 1;
-    pirmas.gal = double(sum)/double(n)*0.4 + pirmas.egz*0.6;
-    vector <int> isrikiuoti_paz = pirmas.paz;
-    sort(isrikiuoti_paz.begin(), isrikiuoti_paz.end());
-    double med = 0;
-    if (n % 2 == 0) {
-        med = (isrikiuoti_paz[n/2 - 1] + isrikiuoti_paz[n/2]) / 2.0;
-    } else {
-        med = isrikiuoti_paz[n/2];
-    }
-    pirmas.med = med*0.4+pirmas.egz*0.6;
-    return pirmas;
+    s.egz = rand() % 10 + 1;
+    s.gal_vid = vidurkis(s, n, sum);
+    s.gal_med = mediana(s, n);
+    
+    return s;
 }
 
-void stud_iv_f(vector <studentas> & studentai, int & stud_n){
-    
+void ivest_f(vector <studentas> & studentai, int & stud_n){
     ifstream fin("kursiokai.txt");
     studentas s;
     if(!fin){
@@ -255,8 +235,8 @@ void stud_iv_f(vector <studentas> & studentai, int & stud_n){
         }
         s.paz.clear();
         s.egz = 0;
-        s.gal = 0;
-        s.med = 0;
+        s.gal_vid = 0;
+        s.gal_med = 0;
         getline(fin,x);
         for(int i = 0; i < x.size(); i++){
             if(isdigit(x[i])){
@@ -280,27 +260,23 @@ void stud_iv_f(vector <studentas> & studentai, int & stud_n){
             s.egz = sk;
         }
         
-        s.gal = double(sum)/double(n)*0.4 + s.egz*0.6;
-        
-        vector <int> isrikiuoti_paz = s.paz;
-        sort(isrikiuoti_paz.begin(), isrikiuoti_paz.end());
-        
-        double med = 0;
-        if (n % 2 == 0) {
-            med = (isrikiuoti_paz[n/2 - 1] + isrikiuoti_paz[n/2]) / 2.0;
-        } else {
-            med = isrikiuoti_paz[n/2];
-        }
-        s.med = med*0.4+s.egz*0.6;
-        
+        s.gal_vid = vidurkis(s, n, sum);
+        s.gal_med = mediana(s, n);
         
         studentai.push_back(s);
         stud_n++;
     }
     fin.close();
-    
 }
 
+void stud_iv(vector <studentas> & studentai, int & n, function<studentas()> funkc){
+    cout << "Kiek studentu grupeje? "; n = n_iv("Kiek studentu grupeje?");
+    for(auto i = 0; i < n; i++){
+        studentai.push_back(funkc());
+    }
+}
+
+//Balų, vardo/pavardės ir meniu pasirinkimo įvedimo funckijos
 int skaiciu_iv(string i){
     string x;
     bool tiesa = true;
@@ -309,7 +285,7 @@ int skaiciu_iv(string i){
         getline(cin, x);
         if(x.empty()){
             cout << "Padarete klaida, bandykite is naujo" << endl;
-            cout << i;
+            cout << i << " ";
             continue;
         }
         for(char ch : x){
@@ -328,7 +304,6 @@ int skaiciu_iv(string i){
         if(tiesa) return stoi(x);
     }
 }
-
 int n_iv(string i){
     string x;
     bool tiesa = true;
@@ -336,7 +311,7 @@ int n_iv(string i){
         tiesa = true;
         getline(cin, x);
         if(x.empty()){
-            cout << "Padarete klaida, bandykite is naujo" << endl;
+            cout << "Padarete klaida, bandykite is naujo " << endl;
             cout << i;
             continue;
         }
@@ -348,42 +323,117 @@ int n_iv(string i){
                 break;
             }
         }
-        if(tiesa != false && stoi(x) <= 0){
-            cout << "Skaicius negali buti lygus 0" << endl;
-            cout << i << " ";
-            continue;
-        }
         if(tiesa) return stoi(x);
         
     }
 }
+string vardo_iv(){
+    string x;
+    while(true){
+        getline(cin, x);
+        if(!x.empty()){
+            return x;
+        }
+        cout << "Ivedimas negali buti tuscias, bandykite is naujo: ";
+    }
+}
+int pasirink_iv(int min_r, int max_r){
+    string x;
+    int pasirinkimas;
+    
+    while(true){
+        getline(cin, x);
+        
+        if(!arskaicius(x) || x.empty()){
+            cout << "Padarete klaida, bandykite is naujo" << endl;
+            continue;
+        }
+        
+        pasirinkimas = stoi(x);
+        
+        if(pasirinkimas <min_r || pasirinkimas > max_r){
+            cout << "Padarete klaida, bandykite is naujo" << endl;
+            continue;
+        }
+        
+        return pasirinkimas;
+    }
+}
 
+//vidurkio ir medianos galutino balo apskaiciavimo funkcijos
+double vidurkis(studentas s, int n, int sum){
+    if( n == 0){
+        return s.egz;
+    }
+    else{
+        return double(sum)/double(n)*0.4 + s.egz*0.6;
+    }
+}
+double mediana(studentas s, int n){
+    if(n == 0){
+        return s.egz;
+    }
+    else{
+        vector <int> isrikiuoti_paz = s.paz;
+        sort(isrikiuoti_paz.begin(), isrikiuoti_paz.end());
+        double med = 0;
+        if (n % 2 == 0) {
+            med = (isrikiuoti_paz[n/2 - 1] + isrikiuoti_paz[n/2]) / 2.0;
+        }
+        else {
+            med = isrikiuoti_paz[n/2];
+        }
+        return med*0.4+s.egz*0.6;
+    }
+}
+
+//Papildomos funkcijos
 bool arskaicius(string i){
     for(char ch : i){
         if(!isdigit(ch)) return false;
     }
     return true;
 }
-
-void rikiavimas(vector<studentas> & studentai){
-    string pasirinkimas = "0";
-    cout << "1. Rikiuoti rezultatus, pagal studentu vardus" << endl;
-    cout << "2. Rikiuoti rezultatus, pagal studentu pavardes" << endl;
-    while(pasirinkimas != "1" && pasirinkimas != "2"){
-        getline(cin, pasirinkimas);
-        if(pasirinkimas != "1" && pasirinkimas != "2"){
-            cout << "Padarete klaida, bandykite is naujo" << endl;
-        }
-    }
-    if(pasirinkimas == "1"){
+void rikiavimas(vector<studentas> & studentai, int pasirinkimas){
+    if(pasirinkimas == 1){
         sort(studentai.begin(), studentai.end(), [](const studentas &a, const studentas &b){
                 return a.var < b.var;
             });
     }
-    else if(pasirinkimas == "2"){
+    else if(pasirinkimas == 2){
         sort(studentai.begin(), studentai.end(), [](const studentas &a, const studentas &b){
                 return a.pav < b.pav;
             });
     }
-    
+}
+void spausdinimas(vector<studentas> & studentai, int pasirinkimas){
+    cout << setw(15) << left << "Vardas" << setw(20) << left << "Pavarde";
+
+    if (pasirinkimas == 1) {
+        cout << setw(17) << left << "Galutinis (Vid.)" << endl;
+        for(int i = 0; i < 51; i++) cout << "-";
+        cout << endl;
+        for(auto s:studentai){
+            cout << setw(15) << left << s.var << setw(20) << left << s.pav;
+            cout << fixed << setprecision(2) << setw(17) << s.gal_vid << endl;
+        }
+    }
+    else if (pasirinkimas == 2) {
+        cout << setw(17) << left << "Galutinis (Med.)" << endl;
+        for(int i = 0; i < 51; i++) cout << "-";
+        cout << endl;
+        for(auto s:studentai){
+            cout << setw(15) << left <<s.var << setw(20) << left << s.pav;
+            cout << fixed << setprecision(2) << setw(17) << s.gal_med << endl;
+        }
+    }
+    else if (pasirinkimas == 3) {
+        cout << setw(19) << left << "Galutinis (Vid.) / " << setw(17) << left << "Galutinis (Med.)" << endl;
+        for(int i = 0; i < 69; i++) cout << "-";
+        cout << endl;
+        for(auto s:studentai){
+            cout << setw(15) << left << s.var << setw(20) << left << s.pav;
+            cout << fixed << setprecision(2) << setw(19) << s.gal_vid << setw(17) << s.gal_med << endl;
+        }
+    }
 }
