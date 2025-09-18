@@ -228,37 +228,57 @@ void ivest_f(vector <studentas> & studentai, int & stud_n){
     stud_n = 0;
     while(fin >> s.var >> s.pav){
         int sk = 0, n = 0, sum = 0;
+        bool klaida = false;
         
-        if(arskaicius(s.var) || arskaicius(s.pav)){
-            cout << n+1 << " Eiluteje studento vardas ar pavarde nerasta. Sis studentas praleidziamas." << endl;
-            continue;
-        }
         s.paz.clear();
         s.egz = 0;
         s.gal_vid = 0;
         s.gal_med = 0;
+        
         getline(fin,x);
+        
         for(int i = 0; i < x.size(); i++){
             if(isdigit(x[i])){
-                sk = sk*10+(x[i]- '0');
-                if(sk < 0 || sk > 10){
-                    cout << n+1 << " Eiluteje pazymys nera intervale 1-10. Si skaiciu praleisime." << endl;
-                    sk = 0;
+                if(!klaida){
+                    sk = sk * 10 + (x[i] - '0');
                 }
             }
             else if(isalpha(x[i])){
-                cout << n+1 << " Eiluteje buvo ivesta raide. Ja praleisime." << endl;
+                klaida = true;
             }
-            else if(sk != 0){
-                s.paz.push_back(sk);
-                n++;
-                sum += sk;
+            else{
+                if(sk != 0 && !klaida){
+                    if(sk >= 1 && sk <= 10){
+                        s.paz.push_back(sk);
+                        sum += sk;
+                        n++;
+                    }
+                    else{
+                        cout << stud_n+1 << " Eiluteje pazymys nera intervale 1-10. Si skaiciu praleisime." << endl;
+                    }
+                }
                 sk = 0;
+                klaida = false;
             }
         }
-        if(sk != 0){
-            s.egz = sk;
+        
+        if(sk != 0 && !klaida){
+            if(sk >= 1 && sk <= 10){
+                s.paz.push_back(sk);
+                sum += sk;
+                n++;
+            }
+            else{
+                cout << n+1 << " Eiluteje pazymys nera intervale 1-10. Si skaiciu praleisime." << endl;
+            }
         }
+        if(!s.paz.empty()){
+            s.egz = s.paz.back();
+            s.paz.pop_back();
+            n--;
+            sum -= s.egz;
+        }
+        
         
         s.gal_vid = vidurkis(s, n, sum);
         s.gal_med = mediana(s, n);
