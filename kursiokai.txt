@@ -1,0 +1,5 @@
+Vardas	Pavarde		Nd1	Nd2	Nd3	egz
+Tomas	Tomaitis	4	5		9
+Petras	Petraitis	a			11
+Saulius Saulius		3	2	5	9
+Saule	Saulyte		11	34	2	10
