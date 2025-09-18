@@ -142,7 +142,6 @@ studentas stud_iv_su_n(){
     cout << "Iveskite egzamino pazymi: "; pirmas.egz = skaiciu_iv("Iveskite egzamino pazymi:");
     pirmas.gal = double(sum)/double(n)*0.4 + pirmas.egz*0.6;
     vector <int> isrikiuoti_paz = pirmas.paz;
-    isrikiuoti_paz.push_back(pirmas.egz);
     sort(isrikiuoti_paz.begin(), isrikiuoti_paz.end());
     double med = 0;
     if (n % 2 == 0) {
@@ -223,7 +222,6 @@ studentas rando(){
     pirmas.egz = rand() % 10 + 1;
     pirmas.gal = double(sum)/double(n)*0.4 + pirmas.egz*0.6;
     vector <int> isrikiuoti_paz = pirmas.paz;
-    isrikiuoti_paz.push_back(pirmas.egz);
     sort(isrikiuoti_paz.begin(), isrikiuoti_paz.end());
     double med = 0;
     if (n % 2 == 0) {
@@ -285,7 +283,6 @@ void stud_iv_f(vector <studentas> & studentai, int & stud_n){
         s.gal = double(sum)/double(n)*0.4 + s.egz*0.6;
         
         vector <int> isrikiuoti_paz = s.paz;
-        isrikiuoti_paz.push_back(s.egz);
         sort(isrikiuoti_paz.begin(), isrikiuoti_paz.end());
         
         double med = 0;
@@ -390,4 +387,3 @@ void rikiavimas(vector<studentas> & studentai){
     }
     
 }
-
