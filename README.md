@@ -1,5 +1,5 @@
 # Studentų galutinio įvertinimo skaičiavimo programa
-## Programos aprasymas
+## Programos aprašymas
 Programos tikslas: apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formulę:
 ### galutinis = 0.4 * vidurkis/mediana + 0.6 * egzaminas
 
