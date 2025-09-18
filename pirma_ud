@@ -34,8 +34,8 @@ void stud_iv_f(vector <studentas> & studentai, int & stud_n);
 int skaiciu_iv(string i);
 int n_iv(string i);
 bool arskaicius(string i);
+void rikiavimas(vector<studentas> & studentai);
 
-//using namespace std;
 int main()
 {
     srand(static_cast<unsigned int>(time(0)));
@@ -76,12 +76,6 @@ int main()
     }
     else if(pasirinkimas == "4"){
         stud_iv_f(grupe, n);
-        cout << n << endl;
-        for(auto pirmas: grupe){
-            cout << setw(10) << left << pirmas.var << setw(15) << left << pirmas.pav;
-            cout << setw(19) << pirmas.gal << setw(17) << pirmas.med << endl;
-        }
-        cout << endl;
     }
 
 
@@ -97,6 +91,7 @@ int main()
             }
         }
     }
+    rikiavimas(grupe);
     cout << setw(10) << left << "Vardas" << setw(15) << left << "Pavarde";
 
     if (pasirinkimas == "1") {
@@ -357,7 +352,7 @@ int n_iv(string i){
             }
         }
         if(tiesa != false && stoi(x) <= 0){
-            cout << "Skaicius negali buti mazesnis arba lygus 0" << endl;
+            cout << "Skaicius negali buti lygus 0" << endl;
             cout << i << " ";
             continue;
         }
@@ -371,5 +366,28 @@ bool arskaicius(string i){
         if(!isdigit(ch)) return false;
     }
     return true;
+}
+
+void rikiavimas(vector<studentas> & studentai){
+    string pasirinkimas = "0";
+    cout << "1. Rikiuoti rezultatus, pagal studentu vardus" << endl;
+    cout << "2. Rikiuoti rezultatus, pagal studentu pavardes" << endl;
+    while(pasirinkimas != "1" && pasirinkimas != "2"){
+        getline(cin, pasirinkimas);
+        if(pasirinkimas != "1" && pasirinkimas != "2"){
+            cout << "Padarete klaida, bandykite is naujo" << endl;
+        }
+    }
+    if(pasirinkimas == "1"){
+        sort(studentai.begin(), studentai.end(), [](const studentas &a, const studentas &b){
+                return a.var < b.var;
+            });
+    }
+    else if(pasirinkimas == "2"){
+        sort(studentai.begin(), studentai.end(), [](const studentas &a, const studentas &b){
+                return a.pav < b.pav;
+            });
+    }
+    
 }
 
