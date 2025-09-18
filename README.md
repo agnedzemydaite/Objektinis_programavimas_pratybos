@@ -42,11 +42,13 @@ Programos efektyvumas buvo testuotas su 3 tekstiniais failais:
 P.S. Rezultatai buvo vedami į tekstinį failą.
 
 ## Dokumentai
+
+Programa
+- v0.1.
+
 Tekstiniai failai
-'kursiokai.txt'
-'studentai10000.txt'
-'studentai100000.txt'
-'studentai1000000.txt'
+- kursiokai.txt
+- studentai10000.txt
 
 
 
