@@ -114,6 +114,7 @@ int main(){
         cout << "----------------------------" << endl;
         cout << "1. Vidurkis." << endl;
         cout << "2. Mediana." << endl;
+        cout << "----------------------------" << endl;
         cout << endl << "Iveskite savo pasirinkima: ";
         pasirinkimas = pasirink_iv(1, 2);
         rusiavimas(studentai, vargsai, kieti, pasirinkimas);
@@ -145,7 +146,26 @@ int main(){
         pasirinkimas_2 = pasirink_iv(1, 2);
         rikiavimas(studentai, pasirinkimas_2);
         
-        //Spausdinimas
+        //Spausdinimo meniu
+        cout << "------------------------------" << endl;
+        cout << "-- Spausdinimo pasirinkimai --" << endl;
+        cout << "------------------------------" << endl;
+        cout << "1. Spausdinti i ekrana." << endl;
+        cout << "2. Spausdinti i faila." << endl;
+        cout << "------------------------------" << endl;
+        pasirinkimas_2 = 0;
+        cout << endl << "Iveskite savo pasirinkima: ";
+        pasirinkimas_2 = pasirink_iv(1, 2);
+        
+        if(pasirinkimas_2 == 1){
+            cout << "VARGSIUKAI" << endl;
+            spausdinimas(vargsai, pasirinkimas);
+            cout << "KIETIAKAI" << endl;
+            spausdinimas(kieti, pasirinkimas);
+        }
+        else if(pasirinkimas_2 == 2){
+            cout << "Rezultatai ivesti i failus 'vargsiukai.txt' ir 'kietiakiai.txt'";
+        }
         //spausdinimas(studentai, pasirinkimas);
     }
     
