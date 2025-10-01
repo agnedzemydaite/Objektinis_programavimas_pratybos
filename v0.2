@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <functional>
 
+#include <chrono>
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -23,6 +25,10 @@ using std::ifstream;
 using std::function;
 using std::fixed;
 using std::setprecision;
+
+using std::chrono::high_resolution_clock;
+using std::chrono::milliseconds;
+using std::chrono::duration_cast;
 
 struct studentas{
     string var;
@@ -115,7 +121,7 @@ int main(){
         rikiavimas(studentai, pasirinkimas_2);
         
         //Spausdinimas
-        spausdinimas(studentai, pasirinkimas);
+        //spausdinimas(studentai, pasirinkimas);
     }
     
     return 0;
@@ -215,13 +221,25 @@ studentas rando(){
 }
 
 void ivest_f(vector <studentas> & studentai, int & stud_n){
-    ifstream fin("kursiokai.txt");
-    studentas s;
-    if(!fin){
-        cout << "Nepavyko atidaryti failo." << endl;
-        exit(1);
-    }
+    string pav;
+    ifstream fin;
     
+    while (true){
+        cout << "Iveskite failo pavadinima: ";
+        getline(cin, pav);
+
+        fin.open(pav);
+        if (!fin){
+            cout << "Nepavyko atidaryti failo. Bandykite dar karta." << endl;
+            fin.clear();
+        }
+        else{
+            break;
+        }
+    }
+    auto start = high_resolution_clock::now();
+    
+    studentas s;
     string x;
     getline(fin, x);
 
@@ -286,6 +304,9 @@ void ivest_f(vector <studentas> & studentai, int & stud_n){
         studentai.push_back(s);
         stud_n++;
     }
+    auto end = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(end - start).count();
+    cout << "Failo nuskaitymas uztruko: " << duration << " ms" << endl;
     fin.close();
 }
 
