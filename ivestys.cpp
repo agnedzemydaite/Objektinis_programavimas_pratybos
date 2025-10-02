@@ -204,4 +204,3 @@ void stud_iv(vector <studentas> & studentai, int & n, studentas (*funkc)()){
 
 
 
-
