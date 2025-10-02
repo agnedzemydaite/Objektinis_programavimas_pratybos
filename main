@@ -35,7 +35,7 @@ int main(){
         cout << i << ".txt failo sukurimas uztruko: " << duration << " ms" << endl;
         laikas.push_back(duration);
     }
-    
+ 
     //Pagrindinis meniu
     cout << "----------------------------------------------------------" << endl;
     cout << "---------- Studentu pazymiu pasirinkimo sistema ----------" << endl;
@@ -53,23 +53,7 @@ int main(){
     else if(pasirinkimas == 2) stud_iv(studentai, n, ivest_be_n);
     else if(pasirinkimas == 3) stud_iv(studentai, n, rando);
     else if(pasirinkimas == 4){
-        ivest_f(studentai, n, pav);
-        pav = pav.substr(0, pav.size() - 4);
-        if(pav == "1000"){
-            testavimas = testavimas + laikas[0];
-        }
-        else if(pav == "10000"){
-            testavimas = testavimas + laikas[1];
-        }
-        else if(pav == "100000"){
-            testavimas = testavimas + laikas[2];
-        }
-        else if(pav == "1000000"){
-            testavimas = testavimas + laikas[3];
-        }
-        else if(pav == "10000000"){
-            testavimas = testavimas + laikas[4];
-        }
+        ivest_f(studentai, n, pav, testavimas);
     }
     
     if(n == 0){
@@ -173,3 +157,4 @@ int main(){
     return 0;
     
 }
+
