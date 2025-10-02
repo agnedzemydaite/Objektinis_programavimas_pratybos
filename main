@@ -1,8 +1,10 @@
+#include "studentai.h"
 #include "ivestys.h"
 #include "generavimas.h"
 #include "balu_vardu_meniu_ivestys.h"
 #include "papildomos_funkcijos.h"
 #include "spausdinimas.h"
+#include "galutinis_balas.h"
 
 #include <chrono>
 using std::cout;
