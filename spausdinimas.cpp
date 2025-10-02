@@ -12,6 +12,7 @@ using std::endl;
 using std::ofstream;
 using std::ostringstream;
 using std::ios;
+using std::to_string;
 
 void spausdinimas(vector<studentas> & studentai, int pasirinkimas){
     cout << setw(15) << left << "Vardas" << setw(20) << left << "Pavarde";
@@ -46,7 +47,8 @@ void spausdinimas(vector<studentas> & studentai, int pasirinkimas){
 }
 
 void spausd_f(vector<studentas> studentai, string pav, int pasirinkimas) {
-    int n = static_cast<int>(studentai.size());
+    int w = static_cast<int>(studentai.size());
+    int n = to_string(w).length();
     
     pav = pav + ".txt";
     ofstream fout(pav, ios::out | ios::binary);
