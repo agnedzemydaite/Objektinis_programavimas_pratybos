@@ -1,0 +1,49 @@
+#include "papildomos_funkcijos.h"
+
+using std::string;
+using std::vector;
+using std::cout;
+using std::endl;
+
+bool arskaicius(string i){
+    for(char ch : i){
+        if(!isdigit(ch)) return false;
+    }
+    return true;
+}
+
+void rikiavimas(vector<studentas> & studentai, int pasirinkimas){
+    if(pasirinkimas == 1){
+        sort(studentai.begin(), studentai.end(), [](const studentas &a, const studentas &b){
+                return a.var < b.var;
+            });
+    }
+    else if(pasirinkimas == 2){
+        sort(studentai.begin(), studentai.end(), [](const studentas &a, const studentas &b){
+                return a.pav < b.pav;
+            });
+    }
+}
+
+void rusiavimas(vector <studentas> & studentai, vector <studentas> & vargsai, vector <studentas> & kieti, int & pasirinkimas){
+    if(pasirinkimas == 1){
+        for(const auto& s:studentai){
+            if(s.gal_vid < 5.0){
+                vargsai.push_back(s);
+            }
+            else{
+                kieti.push_back(s);
+            }
+        }
+    }
+    else if(pasirinkimas == 2){
+        for(const auto& s:studentai){
+            if(s.gal_med < 5.0){
+                vargsai.push_back(s);
+            }
+            else{
+                kieti.push_back(s);
+            }
+        }
+    }
+}
