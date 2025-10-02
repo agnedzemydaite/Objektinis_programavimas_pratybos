@@ -174,7 +174,17 @@ int main(){
             spausd_f(kieti, "kietiakai", pasirinkimas);
             cout << "Rezultatai ivesti i failus 'vargsiukai.txt' ir 'kietiakiai.txt'";
         }
-        //spausdinimas(studentai, pasirinkimas);
+        cout << endl;
+        cout << "-------------------------------------------------" << endl;
+        cout << "-- Ar norite, kad atspausdintu visus studentus --" << endl;
+        cout << "-------------------------------------------------" << endl;
+        cout << "1. Taip." << endl;
+        cout << "2. Ne." << endl;
+        cout << "-------------------------------------------------" << endl;
+        pasirinkimas_2 = 0;
+        cout << endl << "Iveskite savo pasirinkima: ";
+        pasirinkimas_2 = pasirink_iv(1, 2);
+        if(pasirinkimas_2 == 1) spausdinimas(studentai, pasirinkimas);
     }
     
     return 0;
@@ -667,3 +677,4 @@ void spausd_f(vector<studentas> studentai, string pav, int pasirinkimas) {
         fout.write(buffer.data(), buffer.size());
     }
 }
+
