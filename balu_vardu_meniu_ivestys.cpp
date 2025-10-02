@@ -90,3 +90,4 @@ int pasirink_iv(int min_r, int max_r){
         return pasirinkimas;
     }
 }
+
