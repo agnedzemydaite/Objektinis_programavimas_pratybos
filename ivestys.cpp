@@ -103,7 +103,8 @@ studentas rando(){
     return s;
 }
 
-void ivest_f(vector <studentas> & studentai, int & stud_n, string & pav){
+void ivest_f(vector <studentas> & studentai, int & stud_n, string & pav, double & testavimas){
+    testavimas = 0;
     pav = "";
     ifstream fin;
     
@@ -189,6 +190,7 @@ void ivest_f(vector <studentas> & studentai, int & stud_n, string & pav){
     }
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(end - start).count();
+    testavimas = duration;
     cout << "Failo nuskaitymas uztruko: " << duration << " ms" << endl;
     fin.close();
 }
@@ -199,6 +201,7 @@ void stud_iv(vector <studentas> & studentai, int & n, studentas (*funkc)()){
         studentai.push_back(funkc());
     }
 }
+
 
 
 
