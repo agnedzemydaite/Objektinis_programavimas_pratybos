@@ -23,6 +23,16 @@ void rikiavimas(vector<studentas> & studentai, int pasirinkimas){
                 return a.pav < b.pav;
             });
     }
+    else if(pasirinkimas == 3){
+        sort(studentai.begin(), studentai.end(), [](const studentas &a, const studentas &b){
+                return a.gal_vid < b.gal_vid;
+            });
+    }
+    else if(pasirinkimas == 4){
+        sort(studentai.begin(), studentai.end(), [](const studentas &a, const studentas &b){
+                return a.gal_med < b.gal_med;
+            });
+    }
 }
 
 void rusiavimas(vector <studentas> & studentai, vector <studentas> & vargsai, vector <studentas> & kieti, int & pasirinkimas){
