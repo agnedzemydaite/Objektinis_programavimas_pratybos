@@ -27,16 +27,27 @@ int main(){
     double testavimas = 0;
     string pav;
     
-    for(int i = 1000; i <= 10000000; i*=10){
-        auto start = high_resolution_clock::now();
-        failu_gener(i);
-        auto end = high_resolution_clock::now();
-        auto duration = duration_cast<milliseconds>(end - start).count();
-        cout << i << ".txt failo sukurimas uztruko: " << duration << " ms" << endl;
-        laikas.push_back(duration);
+    cout << "--------------------------------------------------" << endl;
+    cout << "---------- Ar norite sugeneruoti failus ----------" << endl;
+    cout << "--------------------------------------------------" << endl;
+    cout << "1. Taip." << endl;
+    cout << "2. Ne." << endl;
+    cout << "--------------------------------------------------" << endl;
+    cout << endl << "Iveskite savo pasirinkima: ";
+    pasirinkimas = pasirink_iv(1, 2);
+    if(pasirinkimas == 1){
+        for(int i = 1000; i <= 10000000; i*=10){
+            auto start = high_resolution_clock::now();
+            failu_gener(i);
+            auto end = high_resolution_clock::now();
+            auto duration = duration_cast<milliseconds>(end - start).count();
+            cout << i << ".txt failo sukurimas uztruko: " << duration << " ms" << endl;
+            laikas.push_back(duration);
+        }
     }
  
     //Pagrindinis meniu
+    pasirinkimas = 0;
     cout << "----------------------------------------------------------" << endl;
     cout << "---------- Studentu pazymiu pasirinkimo sistema ----------" << endl;
     cout << "----------------------------------------------------------" << endl;
@@ -99,10 +110,12 @@ int main(){
         cout << "----------------------------" << endl;
         cout << "1. Pagal varda." << endl;
         cout << "2. Pagal pavarde." << endl;
+        cout << "3. Pagal vidurki." << endl;
+        cout << "4. Pagal mediana." << endl;
         cout << "----------------------------" << endl;
         
         cout << endl << "Iveskite savo pasirinkima: ";
-        pasirinkimas_2 = pasirink_iv(1, 2);
+        pasirinkimas_2 = pasirink_iv(1, 4);
         rikiavimas(studentai, pasirinkimas_2);
         rikiavimas(vargsai, pasirinkimas_2);
         rikiavimas(kieti, pasirinkimas_2);
@@ -157,4 +170,3 @@ int main(){
     return 0;
     
 }
-
