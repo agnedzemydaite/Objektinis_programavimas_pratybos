@@ -7,9 +7,17 @@ using std::ios;
 using std::ostringstream;
 using std::setw;
 using std::left;
+using std::random_device;
+using std::mt19937;
+using std::uniform_int_distribution;
 
 void failu_gener(int k) {
-    int paz_n = rand() % 16 + 5, n = 0, laik_k = k;
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_int_distribution<int> kiek_dist(0,20);
+    uniform_int_distribution<int> paz_dist(1,10);
+    
+    int paz_n = kiek_dist(mt), n = 0, laik_k = k;
     while (laik_k != 0) {
         laik_k /= 10;
         n++;
@@ -19,7 +27,7 @@ void failu_gener(int k) {
         tarpai+= " ";
     }
     string pav = to_string(k) + ".txt";
-    ofstream fout(pav, ios::out | ios::binary);
+    ofstream fout(pav);
 
     ostringstream antraste;
     antraste << setw(n + 8) << left << "Vardas"
@@ -44,13 +52,13 @@ void failu_gener(int k) {
         buffer += ("Pavarde" + to_string(i + 1)) + tarpai;
 
         for (int j = 0; j < paz_n; j++) {
-            int r = rand() % 10 + 1;
+            int r = paz_dist(mt);
             if(r == 10) tarpai2 = "   ";
             else tarpai2 = "    ";
             buffer += to_string(r) + tarpai2;
         }
 
-        buffer += to_string(rand() % 10 + 1) + "\n";
+        buffer += to_string(paz_dist(mt)) + "\n";
 
         if (buffer.size() > 10'000'000) {
             fout.write(buffer.data(), buffer.size());
