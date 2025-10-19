@@ -11,6 +11,9 @@ using std::to_string;
 using std::chrono::high_resolution_clock;
 using std::chrono::milliseconds;
 using std::chrono::duration_cast;
+using std::random_device;
+using std::mt19937;
+using std::uniform_int_distribution;
 
 studentas ivest_su_n(){
     
@@ -84,19 +87,23 @@ studentas ivest_be_n(){
 }
 
 studentas rando(){
+    random_device rd;
+    mt19937 mt(rd());
+    uniform_int_distribution<int> kiek_dist(0,20);
+    uniform_int_distribution<int> paz_dist(1,10);
+    
     int n, laik_paz, sum = 0;
     studentas s;
     cout << "Iveskite studento duomenis" << endl;
     cout << "Vardas: "; s.var = vardo_iv();
     cout << "Pavarde: "; s.pav = vardo_iv();
-    n = rand() % 21;
-    for(int i = 0; i < n; i++)
-    {
-        laik_paz = rand() % 10 + 1;
+    n =  kiek_dist(mt);
+    for(int i = 0; i < n; i++){
+        laik_paz = paz_dist(mt);
         s.paz.push_back(laik_paz);
         sum += laik_paz;
     }
-    s.egz = rand() % 10 + 1;
+    s.egz = paz_dist(mt);
     s.gal_vid = vidurkis(s, n, sum);
     s.gal_med = mediana(s, n);
     
@@ -201,6 +208,3 @@ void stud_iv(vector <studentas> & studentai, int & n, studentas (*funkc)()){
         studentai.push_back(funkc());
     }
 }
-
-
-
