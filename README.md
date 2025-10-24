@@ -15,8 +15,7 @@ Vartotojas gali pasirinkti vieną iš keturių pasirinkimų:
 
 Jei vartotojas pasirenka (1-3) funcijas, tai ekrane yra atspausdinama kiekvieno studento saugojimo atmintyje adresas.
 
-_Vieta atmintyje_
-
+<img src="Vieta-atmintyje.png" alt="Vieta atmintyje" width="500"/>
 
 Įvedus duomenis, vartotojas gali pasirinkti, pagal kokį kriterijų nori surušiuoti studentų duomenis į failus vargsiukai.txt ir kietiakai.txt. 
 1. Pagal vidurkį.
@@ -94,6 +93,8 @@ Matavome 3 dalykus:
 |100 000         |    0.129 s  |  0.069 s   |  0.432 s  |    0.63 s      | 
 |1 000 000       |   1.289 s   |   0.114 s  |  0.705 s  |    2.108 s     |
 |10 000 000      |  12.786 s   |  1.407 s   |   8.59 s  |    22.783 s    |
+
+<img src="grafas.png" alt="grafikas" width="600"/>
 
 ### Išvados
 
