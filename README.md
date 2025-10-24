@@ -13,6 +13,11 @@ Vartotojas gali pasirinkti vieną iš keturių pasirinkimų:
 3. Įvesti studento duomenis, kur namų darbų ir egzamino balai yra automatikšai sugeneruojami
 4. Įvesti studento duomenis iš failo
 
+Jei vartotojas pasirenka (1-3) funcijas, tai ekrane yra atspausdinama kiekvieno studento saugojimo atmintyje adresas.
+
+_Vieta atmintyje_
+
+
 Įvedus duomenis, vartotojas gali pasirinkti, pagal kokį kriterijų nori surušiuoti studentų duomenis į failus vargsiukai.txt ir kietiakai.txt. 
 1. Pagal vidurkį.
 2. Pagal medianą.
@@ -50,6 +55,12 @@ Gale programos atspausdinama, kiek laiko (ms) užtruko failo testavimas.
 Padarius klaidą, vartotjui pranešama, kad buvo padarytą klaida ir leidžia įvesti iš naujo.
 
 ## Spartos tyrimas
+**Testavimo sistemos parametrai:**
+- Apple M3 Pro (11-core CPU)
+- 18 GB RAM
+- 512 GB SSD
+
+
 Versijų sparta buvo matuojama su 5 tekstiniais failais, kuriose ND skaičius yra 10:
 - 1000.txt
 - 10000.txt
@@ -80,9 +91,13 @@ Matavome 3 dalykus:
 -----------------|-------------|------------|-----------|----------------|
 |1000            |   0.003 s   |  0 s       |  0.003 s  |    0.006 s     |
 |10 000          |    0.014 s  |   0.005 s  |  0.042 s  |    0.061 s     |
-|100 000         |    0.129 s  |  0.069 s   |  0.432 s  |    0.630 s     | 
+|100 000         |    0.129 s  |  0.069 s   |  0.432 s  |    0.63 s      | 
 |1 000 000       |   1.289 s   |   0.114 s  |  0.705 s  |    2.108 s     |
-|10 000 000      |    s   |  s   |   s  |     s    |
+|10 000 000      |  12.786 s   |  1.407 s   |   8.59 s  |    22.783 s    |
+
+### Išvados
+
+Abejoms versijoms atlikus spartos tyrimą, matome, kad visais atvejais *Vector* versija buvo greitesnė. Su mažesniu įrašų skaičiumi abiejų versijų greitis labai neišsiskiria, tačiau lyginant 1 mln. ir 10 mln. įrašus, pastebime, kad naudojant vektoriaus konteinerio tipą funkcijos veikia dvigubai greičiau.
 
 
 
