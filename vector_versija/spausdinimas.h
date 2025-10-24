@@ -10,4 +10,4 @@
 
 void spausdinimas(vector<studentas> & studentai, int pasirinkimas);
 void spausd_f(vector <studentas> studentai, string pav, int pasirinkimas);
-
+void vieta_atmintyje(vector <studentas> studentai);

@@ -106,3 +106,13 @@ void spausd_f(vector<studentas> studentai, string pav, int pasirinkimas) {
     }
 }
 
+void vieta_atmintyje(vector <studentas> studentai){
+    cout << setw(15) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(16) << left << "Vieta atmintyje" << endl;
+    for(int i = 0; i < 51; i++) cout << "-";
+    cout << endl;
+    for(auto &s: studentai){
+        cout <<setw(15) << left << s.var << setw(20) << left << s.pav << setw(16) << left << &s << endl;
+
+    }
+    cout << endl;
+}

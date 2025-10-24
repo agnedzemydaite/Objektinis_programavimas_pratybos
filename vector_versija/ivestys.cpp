@@ -208,3 +208,6 @@ void stud_iv(vector <studentas> & studentai, int & n, studentas (*funkc)()){
         studentai.push_back(funkc());
     }
 }
+
+
+

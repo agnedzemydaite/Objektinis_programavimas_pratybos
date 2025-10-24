@@ -71,6 +71,9 @@ int main(){
         cout << "Studentu skaicius lygus 0. Rezultatai negelimi" << endl;
     }
     else{
+        //Vieta atmintyje
+        if(pasirinkimas >= 1 && pasirinkimas <=3) vieta_atmintyje(studentai);
+        
         //Rusiavimo meniu
         pasirinkimas = 0;
         cout << "----------------------------" << endl;

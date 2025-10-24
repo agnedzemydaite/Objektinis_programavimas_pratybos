@@ -70,3 +70,4 @@ void failu_gener(int k) {
         fout.write(buffer.data(), buffer.size());
     }
 }
+
