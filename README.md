@@ -1,5 +1,7 @@
 # Studentų galutinio įvertinimo skaičiavimo programa
 ## Programos aprašymas
+V0.3 turi 2 programos versijas: vector ir list. Programos versijos skiriasi tik tuo, kad naudojami skirtingi konteineriai, saugant duomenis.
+
 Programos tikslas: apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formulę:
 ### galutinis = 0.4 * vidurkis/mediana + 0.6 * egzaminas
 
@@ -24,7 +26,7 @@ Toliau vartotojas gali pasirinkti, pagal kokius kriterijus bus apskaičiuotas ir
 2. Pagal medianą
 3. Pagal vidurkį ir medianą
 
-Toliau vartotojas gali pasirinkti, ar rezultatus rikiuoti pagal studentų vardus ar pavardes.
+Toliau vartotojas gali pasirinkti, ar rezultatus rikiuoti pagal studentų vardus, pavardes ar galutinį rezultatą.
 
 Po to vartotojas gali pasirinkti ar duomenis spausdinti į ekraną ar į failus.
 
@@ -47,29 +49,40 @@ Gale programos atspausdinama, kiek laiko (ms) užtruko failo testavimas.
 
 Padarius klaidą, vartotjui pranešama, kad buvo padarytą klaida ir leidžia įvesti iš naujo.
 
-## Efektyvumas
-Programos efektyvumas buvo testuotas su 3 tekstiniais failais:
-|         Failas        |  Laikas  |
-------------------------|----------
-|studentai10000.txt     |  0.305s |
-|studentai100000.txt    |  2.805s |
-|studentai1000000.txt   |  23.414s|
+## Spartos tyrimas
+Versijų sparta buvo matuojama su 5 tekstiniais failais, kuriose ND skaičius yra 10:
+- 1000.txt
+- 10000.txt
+- 100000.txt
+- 1000000.txt
+- 10000000.txt
 
-P.S. Rezultatai buvo vedami į tekstinį failą.
-
-Programos efektyvumas buvo testuojamas 3 kartus, naudojant sugeneruotus failus, kur ND skaičius yra 10.
-Testavome 3 dalykus:
+Matavome 3 dalykus:
 - Duomenų nuskaitymą iš failo.
 - Studentų rūšiavimą į dvi grupes.
 - Duomenų išvedimą į du naujus failus.
 
-| Įrašų skaičius | Vid. laikas |
------------------|-------------
-|1000            |    16 ms    |
-|10 000          |    588 ms   |
-|100 000         |    636 ms   |
-|1 000 000       |    1.586s   |
-|10 000 000      |    11.1s    |
+<b>Matavimai buvo atliekami 5 kartus ir apskaičiuotas vidurkis.</b>
+
+### Vector versija
+
+| Įrašų skaičius | Nuskaitymas | Rušiavimas | Išvedimas | Bendras laikas |
+-----------------|-------------|------------|-----------|----------------|
+|1000            |  0.002 s    | 0 s        | 0.003 s   |    0.005 s     |
+|10 000          |   0.006 s   |  0.001 s   | 0.033 s   |     0.04 s     |
+|100 000         |   0.051 s   |  0.015 s   |  0.332 s  |     0.398 s    | 
+|1 000 000       |   0.494 s   |   0.044 s  |    0.5 s  |    1.038 s     |
+|10 000 000      |   4.885 s   |  0.465 s   |  5.092 s  |    10.442 s    |
+
+### List versija
+
+| Įrašų skaičius | Nuskaitymas | Rušiavimas | Išvedimas | Bendras laikas |
+-----------------|-------------|------------|-----------|----------------|
+|1000            |   0.003 s   |  0 s       |  0.003 s  |    0.006 s     |
+|10 000          |    0.014 s  |   0.005 s  |  0.042 s  |    0.061 s     |
+|100 000         |    0.129 s  |  0.069 s   |  0.432 s  |    0.630 s     | 
+|1 000 000       |   1.289 s   |   0.114 s  |  0.705 s  |    2.108 s     |
+|10 000 000      |    s   |  s   |   s  |     s    |
 
 
 
