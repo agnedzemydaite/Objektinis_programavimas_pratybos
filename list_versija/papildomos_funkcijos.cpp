@@ -35,7 +35,7 @@ void rikiavimas(list<studentas> & studentai, int pasirinkimas){
     }
 }
 
-void rusiavimas(list <studentas> & studentai, list <studentas> & vargsai, list <studentas> & kieti, int & pasirinkimas){
+void rusiavimas_strat1(list <studentas> & studentai, list <studentas> & vargsai, list <studentas> & kieti, int & pasirinkimas){
     if(pasirinkimas == 1){
         for(const auto& s:studentai){
             if(s.gal_vid < 5.0){
@@ -55,5 +55,35 @@ void rusiavimas(list <studentas> & studentai, list <studentas> & vargsai, list <
                 kieti.push_back(s);
             }
         }
+    }
+}
+
+void rusiavimas_strat2(list <studentas> & studentai, list <studentas> & vargsai, int & pasirinkimas){
+    if(pasirinkimas == 1){
+        studentai.sort([](const studentas &a, const studentas &b){
+                return a.gal_vid > b.gal_vid;
+        });
+        while(true){
+            studentas s = studentai.back();
+            if(s.gal_vid < 5.0){
+                vargsai.push_back(s);
+                studentai.pop_back();
+            }
+            else break;
+        }
+    }
+    else if(pasirinkimas == 2){
+        studentai.sort([](const studentas &a, const studentas &b){
+                return a.gal_med > b.gal_med;
+            });
+        while(true){
+            studentas s = studentai.back();
+            if(s.gal_med < 5.0){
+                vargsai.push_back(s);
+                studentai.pop_back();
+            }
+            else break;
+        }
+        
     }
 }
