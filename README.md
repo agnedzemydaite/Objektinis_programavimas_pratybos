@@ -90,7 +90,7 @@ Matavome 3 dalykus:
 -----------------|-------------|------------|-----------|----------------|
 |1000            |   0.003 s   |  0 s       |  0.003 s  |    0.006 s     |
 |10 000          |    0.014 s  |   0.005 s  |  0.042 s  |    0.061 s     |
-|100 000         |    0.129 s  |  0.069 s   |  0.432 s  |    0.63 s      | 
+|100 000         |    0.129 s  |  0.021 s   |  0.432 s  |    0.582 s     | 
 |1 000 000       |   1.289 s   |   0.114 s  |  0.705 s  |    2.108 s     |
 |10 000 000      |  12.786 s   |  1.407 s   |   8.59 s  |    22.783 s    |
 
@@ -100,5 +100,26 @@ Matavome 3 dalykus:
 
 Abejoms versijoms atlikus spartos tyrimą, matome, kad visais atvejais *Vector* versija buvo greitesnė. Su mažesniu įrašų skaičiumi abiejų versijų greitis labai neišsiskiria, tačiau lyginant 1 mln. ir 10 mln. įrašus, pastebime, kad naudojant vektoriaus konteinerio tipą funkcijos veikia dvigubai greičiau.
 
+## Rūšiavimo strategijų palyginimas
+
+### Vector versija
+
+| Įrašų skaičius | 1 strategija | 2 strategija | 3 strategija |
+-----------------|--------------|--------------|--------------|
+|1000            |      0  s    |    0 s       |  |
+|10 000          |     0.001 s  |    0.004 s   |  |
+|100 000         |     0.015 s  |    0.045 s   |  |
+|1 000 000       |    0.044 s   |    0.138 s   |  |
+|10 000 000      |    0.465 s   |    2.218 s   |  |
+
+### List versija
+
+| Įrašų skaičius | 1 strategija | 2 strategija |
+-----------------|--------------|--------------|
+|1000            |      0  s    |    0.001 s   | 
+|10 000          |     0.005 s  |    0.009 s   | 
+|100 000         |     0.021 s  |    0.045 s   | 
+|1 000 000       |    0.114 s   |    0.672 s   |  
+|10 000 000      |    1.407 s   |   12.166s    |
 
 
