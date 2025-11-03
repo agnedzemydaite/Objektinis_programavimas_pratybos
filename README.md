@@ -43,7 +43,7 @@ Apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formul
 
 ### Vartotojas gali pasirinkti, pagal kokį kriterijų nori surūšiuoti studentų duomenis į failus vargsiukai.txt ir kietiakai.txt:
 
-<img src="nuotraukos/Rusiavimas.png" alt="Rūšiavimo kriterijus" width="200"/>
+<img src="nuotraukos/Rusiavimas.png" alt="Rūšiavimo kriterijus" width="250"/>
 
 <b>Studentai į grupes skirtstomi pagal: </b>
 - Studentai, kurių galutinis balas < 5.0 yra “vargšiukai”.
@@ -51,19 +51,19 @@ Apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formul
 
 ### Vartotojas gali pasirinkti, kurią rūšiavimo strategiją naudoti:
 
-<img src="nuotraukos/Strategija.png" alt="Strategijos pasirinkimas" width="400"/>
+<img src="nuotraukos/Strategija.png" alt="Strategijos pasirinkimas" width="300"/>
 
 ### Vartotojas gali pasirinkti, pagal kokius kriterijus bus apskaičiuotas ir atspausdintas galutinis įvertinimas:
 
-<img src="nuotraukos/Galutinis_balas.png" alt="Galutino balo apskaičiavimo pasirinkimas" width="400"/>
+<img src="nuotraukos/Galutinis_balas.png" alt="Galutino balo apskaičiavimo pasirinkimas" width="350"/>
 
 ### Vartotojas gali pasirinkti, ar rezultatus rikiuoti pagal studentų vardus, pavardes ar galutinį rezultatą:
 
-<img src="nuotraukos/Rikiavimas.png" alt="Rikiavimo pasirinkimas" width="400"/>
+<img src="nuotraukos/Rikiavimas.png" alt="Rikiavimo pasirinkimas" width="250"/>
 
 ### Vartotojas gali pasirinkti ar duomenis spausdinti į ekraną ar į failus:
 
-<img src="nuotraukos/Spausdinimas.png" alt="Spausdinimo pasirinkimas" width="400"/>
+<img src="nuotraukos/Spausdinimas.png" alt="Spausdinimo pasirinkimas" width="300"/>
 
 ### Vartotojas gali pasirinkti, ar nori kad į ekraną atspausdintų visus studentų duomenis:
 
@@ -110,6 +110,8 @@ Matavome 3 dalykus:
 
 <b>Matavimai buvo atliekami 5 kartus ir apskaičiuotas vidurkis.</b>
 
+### Konteinerių spartos palyginimas
+
 ### Vector versija
 
 | Įrašų skaičius | Nuskaitymas | Rušiavimas | Išvedimas | Bendras laikas |
@@ -136,7 +138,7 @@ Matavome 3 dalykus:
 
 Abejoms versijoms atlikus spartos tyrimą, matome, kad visais atvejais *Vector* versija buvo greitesnė. Su mažesniu įrašų skaičiumi abiejų versijų greitis labai neišsiskiria, tačiau lyginant 1 mln. ir 10 mln. įrašus, pastebime, kad naudojant vektoriaus konteinerio tipą funkcijos veikia dvigubai greičiau.
 
-## Rūšiavimo strategijų palyginimas
+### Rūšiavimo strategijų palyginimas
 
 ### Vector versija
 
@@ -173,4 +175,7 @@ Abejose versijose lyginant 1 ir 2 strategiją, gavome, kad 1 veikė žymiai grei
 <p>
 Lyginant <em>vector</em> ir <em>list</em> konteirių spartą, matome, kad visose strategijose <em>vector</em> veikė gan greičiau nei <em>list</em>.
 </p>
+
+## Įdiegimo instrukcija
+
 
