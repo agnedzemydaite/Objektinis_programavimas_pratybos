@@ -181,9 +181,13 @@ Lyginant <em>vector</em> ir <em>list</em> konteirių spartą, matome, kad visose
 - C++ kompiliatorius (C++20 versija)
 - CMake (3.25 ar naujesnė versija)
 - make – kompiliavimo ir vykdomojo failo generavimo įrankis
+- Git - paskirstytos versijų kontrolės sistema
 
 #### Programos įdiegimo žingsniai:
-- Įsitikinti, kad kompiuteryje turite C++ kompiliatorių, cmake ir make, jei neturite - įsidiekite.
+- Įsitikinti, kad kompiuteryje turite C++ kompiliatorių, cmake, make ir github, jei neturite - įsidiekite.
+  - C++ (Parsisiųskite MinGW-w64: https://www.mingw-w64.org/ ir įsidiekite gcc, g++, make)
+  - Cmake (Atsisiųskite iš https://cmake.org/download/)
+  - Git (Atsisiųskite iš https://git-scm.com/download/win ir diegimo metu pažymėkite “Add Git to PATH”)
 - Atsidarykite komandinę eilutę (terminalą) savo kompiuteryje ir įveskite šias komandas:
   -  `git clone -b v1.0 https://github.com/agnedzemydaite/Objektinis_programavimas_pratybos.git`
   -  `cd Objektinis_programavimas_pratybos`
@@ -211,4 +215,3 @@ peržiūrėkite skyrių [**Išsamus galutinės versijos veikimo principas**](#i�
 Trumpai:
 - Paleiskite programą komandą: `./Studentai`
 - Sekite instrukcijas, pateiktas programos lange.
-
