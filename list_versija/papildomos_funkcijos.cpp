@@ -87,3 +87,18 @@ void rusiavimas_strat2(list <studentas> & studentai, list <studentas> & vargsai,
         
     }
 }
+
+void rusiavimas_strat3(list <studentas> & studentai, list <studentas> & vargsai, list <studentas> & kieti, int & pasirinkimas){
+        
+    auto partition_taskas = partition(studentai.begin(), studentai.end(),
+        [pasirinkimas](const studentas& s) {
+            return (pasirinkimas == 1) ? (s.gal_vid < 5.0) : (s.gal_med < 5.0);
+        });
+        
+    vargsai.assign(make_move_iterator(studentai.begin()), make_move_iterator(partition_taskas));
+    kieti.assign(make_move_iterator(partition_taskas), make_move_iterator(studentai.end()));
+
+//   vargsai.splice(vargsai.end(), studentai, studentai.begin(), partition_taskas);
+//   kieti.splice(kieti.end(), studentai, studentai.begin(), studentai.end());
+    
+}

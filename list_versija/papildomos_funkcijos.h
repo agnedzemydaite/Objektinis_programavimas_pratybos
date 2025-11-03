@@ -9,4 +9,5 @@ bool arskaicius(string i);
 void rikiavimas(list <studentas> & studentai, int pasirinkimas);
 void rusiavimas_strat1(list <studentas> & studentai, list <studentas> & vargsai, list <studentas> & kieti, int & pasirinkimas);
 void rusiavimas_strat2(list <studentas> & studentai, list <studentas> & vargsai, int & pasirinkimas);
+void rusiavimas_strat3(list <studentas> & studentai, list <studentas> & vargsai, list <studentas> & kieti, int & pasirinkimas);
 
