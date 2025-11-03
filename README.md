@@ -25,49 +25,60 @@ Apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formul
 
 ## Išsamus galutinės versijos veikimo principas
 
-#### Pasirinkimas generuoti failus
+### Vartotojas gali pasirinkti, ar nori generuoti studentų duomenų failus:
 
-<img src="nuotraukos/Vieta-atmintyje.png" alt="Vieta atmintyje" width="500"/>
+<img src="nuotraukos/failu_generavimas.png" alt="Failų generavimo pasirinkimas" width="400"/>
 
+<b>Pasirinktus 2 variantą:</b>
+<p>Programa sugeneruoja 5 atsitiktinius studentų sąrašų failus, sudarytus iš: 1 000, 10 000, 100 000, 1 000 000, 10 000 000 įrašų.</p>
 
-Programa sugeneruoja 5 atsitiktinius studentų sąrašų failus, sudarytus iš: 1 000, 10 000, 100 000, 1 000 000, 10 000 000 įrašų.
+### Vartotojas gali pasirinkti, kaip įvesti studentų duomenis:
 
-Vartotojas gali pasirinkti vieną iš keturių pasirinkimų:
-1. Įvesti studento duomenis su nurodytu namų darbų skaičiumi(n)
-2. Įvesti studento duomenis be nurodyto namų darbų skaičiaus(n)
-3. Įvesti studento duomenis, kur namų darbų ir egzamino balai yra automatikšai sugeneruojami
-4. Įvesti studento duomenis iš failo
+<img src="nuotraukos/Ivestis.png" alt="Studentų duomenų įvedimas" width="400"/>
 
-Jei vartotojas pasirenka (1-3) funcijas, tai ekrane yra atspausdinama kiekvieno studento saugojimo atmintyje adresas.
+<b>Pasirinkus (1-3) variantus:</b> 
+<p>Ekrane yra atspausdinamas kiekvieno studento saugojimo atmintyje adresas.</p>
 
-<img src="nuotraukos/Vieta-atmintyje.png" alt="Vieta atmintyje" width="500"/>
+<img src="nuotraukos/Vieta-atmintyje.png" alt="Vieta atmintyje" width="400"/>
 
-Įvedus duomenis, vartotojas gali pasirinkti, pagal kokį kriterijų nori surušiuoti studentų duomenis į failus vargsiukai.txt ir kietiakai.txt. 
-1. Pagal vidurkį.
-2. Pagal medianą.
+### Vartotojas gali pasirinkti, pagal kokį kriterijų nori surūšiuoti studentų duomenis į failus vargsiukai.txt ir kietiakai.txt:
 
-Studentai į grupes skirtstomi pagal:
+<img src="nuotraukos/Rusiavimas.png" alt="Rūšiavimo kriterijus" width="200"/>
+
+<b>Studentai į grupes skirtstomi pagal: </b>
 - Studentai, kurių galutinis balas < 5.0 yra “vargšiukai”.
 - Studentai, kurių galutinis balas >= 5.0 galėtume yra "kietiakiai".
 
-Toliau vartotojas gali pasirinkti, pagal kokius kriterijus bus apskaičiuotas ir atspausdintas galutinis įvertinimas:
-1. Pagal vidurkį
-2. Pagal medianą
-3. Pagal vidurkį ir medianą
+### Vartotojas gali pasirinkti, kurią rūšiavimo strategiją naudoti:
 
-Toliau vartotojas gali pasirinkti, ar rezultatus rikiuoti pagal studentų vardus, pavardes ar galutinį rezultatą.
+<img src="nuotraukos/Strategija.png" alt="Strategijos pasirinkimas" width="400"/>
 
-Po to vartotojas gali pasirinkti ar duomenis spausdinti į ekraną ar į failus.
+### Vartotojas gali pasirinkti, pagal kokius kriterijus bus apskaičiuotas ir atspausdintas galutinis įvertinimas:
 
-Galiausiai vartotojas gali pasirinkti, ar nori kad į ekraną atspausdintų visus studentų duomenis.
+<img src="nuotraukos/Galutinis_balas.png" alt="Galutino balo apskaičiavimo pasirinkimas" width="400"/>
 
-Programos išvedimo forma:
-Vardas  Pavardė      Gautinis (Vid.)  Galutinis (Med.)
-Arvydas Sabonis      x.xx             x.xx
-Rimas   Kurtinaitis  y.yy             y.yy
-...
+### Vartotojas gali pasirinkti, ar rezultatus rikiuoti pagal studentų vardus, pavardes ar galutinį rezultatą:
 
-Gale programos atspausdinama, kiek laiko (ms) užtruko failo testavimas.
+<img src="nuotraukos/Rikiavimas.png" alt="Rikiavimo pasirinkimas" width="400"/>
+
+### Vartotojas gali pasirinkti ar duomenis spausdinti į ekraną ar į failus:
+
+<img src="nuotraukos/Spausdinimas.png" alt="Spausdinimo pasirinkimas" width="400"/>
+
+### Vartotojas gali pasirinkti, ar nori kad į ekraną atspausdintų visus studentų duomenis:
+
+<img src="nuotraukos/Visu_studentu_spausdinimas.png" alt="Visų studentų spausdinimo pasirinkimas" width="400"/>
+
+<b>Programos išvedimo forma:</b>
+
+| Vardas  | Pavardė       | Galutinis (Vid.) | Galutinis (Med.) |
+|---------|---------------|-----------------|-----------------|
+| Arvydas | Sabonis       | x.xx            | x.xx            |
+| Rimas   | Kurtinaitis   | y.yy            | y.yy            |
+| ...     | ...           | ...             | ...             |
+
+
+<b>Programos pabaigoje atspausdinama, kiek laiko (ms) užtruko spartos analizėje testuotos funkcijos.</b>
 
 ## Klaidų tikrinimas
 - Programa tikrina skaičių įvedimą, neleidžiant įvesti ne skaitmenų. Pvz.: a5, penki.
@@ -76,7 +87,7 @@ Gale programos atspausdinama, kiek laiko (ms) užtruko failo testavimas.
 - Programa įvedus vardą ir pavardę praleidžia simbolius faile, kurie nėra skaitmenys.
 - Programa praleidžia skaičius faile, kurie nėra sveikieji skaičiai intervale [1; 10].
 
-Padarius klaidą, vartotjui pranešama, kad buvo padarytą klaida ir leidžia įvesti iš naujo.
+<b> Padarius klaidą, vartotjui pranešama, kad buvo padarytą klaida ir leidžia įvesti iš naujo. </b>
 
 ## Spartos tyrimas
 **Testavimo sistemos parametrai:**
@@ -150,3 +161,16 @@ Abejoms versijoms atlikus spartos tyrimą, matome, kad visais atvejais *Vector* 
 |10 000 000      |    1.407 s   |   12.166s    |    1.063 s   |
 
 <img src="nuotraukos/strategijos_list.png" alt="List rušiavimo strategijos" width="600"/>
+
+### Išvados
+
+<p>
+Abejose versijose lyginant 1 ir 2 strategiją, gavome, kad 1 veikė žymiai greičiau, tai lėmė, kad 2 strategijoje studentų konteinerį reikėjo surikiuoti didėjimo tvarka.
+</p>
+<p>
+3 strategija buvo paremta 1-ąja, pridėdant algortimus, kurie paspartino jos veikimą.
+</p>
+<p>
+Lyginant <em>vector</em> ir <em>list</em> konteirių spartą, matome, kad visose strategijose <em>vector</em> veikė gan greičiau nei <em>list</em>.
+</p>
+
