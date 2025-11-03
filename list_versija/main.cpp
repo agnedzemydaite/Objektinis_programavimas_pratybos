@@ -92,36 +92,21 @@ int main(){
         cout << "----------------------------" << endl;
         cout << "1. Pirma (du konteineriai)." << endl;
         cout << "2. Antra (vienas konteineris)." << endl;
-        cout << "3. Trecia (optimizuota pirma straategija)." << endl;
+        cout << "3. Trecia (optimizuota pirma strategija)." << endl;
         cout << "----------------------------" << endl;
         cout << endl << "Iveskite savo pasirinkima: ";
         pasirinkimas_3 = pasirink_iv(1, 3);
         
-        if(pasirinkimas_3 == 1){
-            auto start = high_resolution_clock::now();
-            rusiavimas_strat1(studentai, vargsai, kieti, pasirinkimas);
-            auto end = high_resolution_clock::now();
-            auto duration = duration_cast<milliseconds>(end - start).count();
-            cout << "Studentu surusiavimas uztruko: " << duration << " ms" << endl;
-            testavimas = testavimas + duration;
-        }
-        else if(pasirinkimas_3 == 2){
-            auto start = high_resolution_clock::now();
-            rusiavimas_strat2(studentai, vargsai, pasirinkimas);
-            auto end = high_resolution_clock::now();
-            auto duration = duration_cast<milliseconds>(end - start).count();
-            cout << "Studentu surusiavimas uztruko: " << duration << " ms" << endl;
-            testavimas = testavimas + duration;
-        }
-        if(pasirinkimas_3 == 3){
-            auto start = high_resolution_clock::now();
-            rusiavimas_strat3(studentai, vargsai, kieti, pasirinkimas);
-            auto end = high_resolution_clock::now();
-            auto duration = duration_cast<milliseconds>(end - start).count();
-            cout << "Studentu surusiavimas uztruko: " << duration << " ms" << endl;
-            testavimas = testavimas + duration;
-        }
-
+        auto start = high_resolution_clock::now();
+        
+        if(pasirinkimas_3 == 1) rusiavimas_strat1(studentai, vargsai, kieti, pasirinkimas);
+        else if(pasirinkimas_3 == 2) rusiavimas_strat2(studentai, vargsai, pasirinkimas);
+        else if(pasirinkimas_3 == 3) rusiavimas_strat3(studentai, vargsai, kieti, pasirinkimas);
+        
+        auto end = high_resolution_clock::now();
+        auto duration = duration_cast<milliseconds>(end - start).count();
+        cout << "Studentu surusiavimas uztruko: " << duration << " ms" << endl;
+        testavimas += duration;
         
         //Vidurkio ir medianos pasirinkimo meniu
         pasirinkimas = 0;
@@ -179,53 +164,28 @@ int main(){
         }
         else if(pasirinkimas_2 == 2){
             
-            if(pasirinkimas_3 == 1){
-                auto start = high_resolution_clock::now();
-                spausd_f(vargsai, "vargsiukai_strat1", pasirinkimas);
-                auto end = high_resolution_clock::now();
-                auto duration = duration_cast<milliseconds>(end - start).count();
-                cout << "vargsiuku atspausdinimas i faila uztruko: " << duration << " ms" << endl;
-                testavimas = testavimas + duration;
-                
-                auto start1 = high_resolution_clock::now();
-                spausd_f(kieti, "kietiakai_strat1", pasirinkimas);
-                auto end1 = high_resolution_clock::now();
-                auto duration1 = duration_cast<milliseconds>(end1 - start1).count();
-                cout << "vargsiuku atspausdinimas i faila uztruko: " << duration1 << " ms" << endl;
-                testavimas = testavimas + duration1;
-            }
-            else if(pasirinkimas_3 == 2){
-                auto start = high_resolution_clock::now();
-                spausd_f(vargsai, "vargsiukai_strat2", pasirinkimas);
-                auto end = high_resolution_clock::now();
-                auto duration = duration_cast<milliseconds>(end - start).count();
-                cout << "vargsiuku atspausdinimas i faila uztruko: " << duration << " ms" << endl;
-                testavimas = testavimas + duration;
-                
-                auto start1 = high_resolution_clock::now();
-                spausd_f(studentai, "kietiakai_strat2", pasirinkimas);
-                auto end1 = high_resolution_clock::now();
-                auto duration1 = duration_cast<milliseconds>(end1 - start1).count();
-                cout << "vargsiuku atspausdinimas i faila uztruko: " << duration1 << " ms" << endl;
-                testavimas = testavimas + duration1;
-            }
-            else if(pasirinkimas_3 == 3){
-                auto start = high_resolution_clock::now();
-                spausd_f(vargsai, "vargsiukai_strat3", pasirinkimas);
-                auto end = high_resolution_clock::now();
-                auto duration = duration_cast<milliseconds>(end - start).count();
-                cout << "vargsiuku atspausdinimas i faila uztruko: " << duration << " ms" << endl;
-                testavimas = testavimas + duration;
-                
-                auto start1 = high_resolution_clock::now();
-                spausd_f(kieti, "kietiakai_strat3", pasirinkimas);
-                auto end1 = high_resolution_clock::now();
-                auto duration1 = duration_cast<milliseconds>(end1 - start1).count();
-                cout << "vargsiuku atspausdinimas i faila uztruko: " << duration1 << " ms" << endl;
-                testavimas = testavimas + duration1;
-            }
+            auto start = high_resolution_clock::now();
             
-            cout << "Rezultatai ivesti i failus 'vargsiukai.txt' ir 'kietiakiai.txt'";
+            if(pasirinkimas_3 == 1) spausd_f(vargsai, "vargsiukai_strat1", pasirinkimas);
+            else if(pasirinkimas_3 == 2) spausd_f(vargsai, "vargsiukai_strat2", pasirinkimas);
+            else if(pasirinkimas_3 == 3) spausd_f(vargsai, "vargsiukai_strat3", pasirinkimas);
+            
+            auto end = high_resolution_clock::now();
+            auto duration = duration_cast<milliseconds>(end - start).count();
+            cout << "vargsiuku atspausdinimas i faila uztruko: " << duration << " ms" << endl;
+            testavimas = testavimas + duration;
+            
+            auto start1 = high_resolution_clock::now();
+            
+            if(pasirinkimas_3 == 1) spausd_f(kieti, "kietiakai_strat1", pasirinkimas);
+            else if(pasirinkimas_3 == 2) spausd_f(kieti, "kietiakai_strat2", pasirinkimas);
+            else if(pasirinkimas_3 == 3) spausd_f(kieti, "kietiakai_strat3", pasirinkimas);
+            
+            auto end1 = high_resolution_clock::now();
+            auto duration1 = duration_cast<milliseconds>(end1 - start1).count();
+            cout << "kietiaku atspausdinimas i faila uztruko: " << duration1 << " ms" << endl;
+            testavimas = testavimas + duration1;
+            
         }
         cout << endl;
         cout << "-------------------------------------------------" << endl;
