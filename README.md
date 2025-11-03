@@ -24,7 +24,6 @@ Apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formul
 - Atlikta studentų rūšiavimo spartos analizė.
 
 ## Išsamus galutinės versijos veikimo principas
-
 ### Vartotojas gali pasirinkti, ar nori generuoti studentų duomenų failus:
 
 <img src="nuotraukos/failu_generavimas.png" alt="Failų generavimo pasirinkimas" width="400"/>
@@ -178,4 +177,38 @@ Lyginant <em>vector</em> ir <em>list</em> konteirių spartą, matome, kad visose
 
 ## Įdiegimo instrukcija
 
+#### Reikalavimai
+- C++ kompiliatorius (C++20 versija)
+- CMake (3.25 ar naujesnė versija)
+- make – kompiliavimo ir vykdomojo failo generavimo įrankis
+
+#### Programos įdiegimo žingsniai:
+- Įsitikinti, kad kompiuteryje turite C++ kompiliatorių, cmake ir make, jei neturite - įsidiekite.
+- Atsidarykite komandinę eilutę (terminalą) savo kompiuteryje ir įveskite šias komandas:
+  -  `git clone -b v1.0 https://github.com/agnedzemydaite/Objektinis_programavimas_pratybos.git`
+  -  `cd Objektinis_programavimas_pratybos`
+- Sukurkite katalogą, kuriame bus generuojami "build" failai:
+  - `mkdir build`
+  - `cd build`
+- Priklausomai nuo norimos naudoti versijos, įveskite:
+  - Vector versijai: `cmake ..`
+  - List versijai: `cmake -DUSE_VECTOR=OFF -DUSE_LIST=ON ..`
+- Kompiliuokite projektą:
+  - `make`
+- Paleiskite programą:
+  - `./Studentai`
+- (Pasirinktinai) Jei norite iš naujo sukompiliuoti nuo nulio:
+  - Ištrinkite `build` katalogą: `rm -rf build`
+  - Ir pakartokite ankstesnius žingsnius.
+
+## Naudojimo instrukcija
+
+Norėdami sužinoti, kaip veikia programa, kokius veiksmus galima atlikti ir kokie pasirinkimai galimi,
+peržiūrėkite skyrių [**Išsamus galutinės versijos veikimo principas**](#išsamus-galutinės-versijos-veikimo-principas)
+
+
+
+Trumpai:
+- Paleiskite programą komandą: `./Studentai`
+- Sekite instrukcijas, pateiktas programos lange.
 
