@@ -215,4 +215,3 @@ peržiūrėkite skyrių [**Išsamus galutinės versijos veikimo principas**](#i�
 Trumpai:
 - Paleiskite programą komandą: `./Studentai`
 - Sekite instrukcijas, pateiktas programos lange.
-
