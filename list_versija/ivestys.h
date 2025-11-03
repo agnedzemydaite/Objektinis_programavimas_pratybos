@@ -1,0 +1,18 @@
+#pragma once
+#include <iostream>
+#include <string>
+#include <list>
+#include <fstream>
+#include <chrono>
+#include <random>
+
+#include "studentai.h"
+#include "galutinis_balas.h"
+#include "balu_vardu_meniu_ivestys.h"
+
+studentas ivest_su_n();
+studentas ivest_be_n();
+studentas rando();
+void ivest_f(list <studentas> & studentai, int & stud_n, string & pav, double & testavimas);
+void stud_iv(list <studentas> & studentai, int & n, studentas (*funkc)());
+
