@@ -15,7 +15,7 @@ Vartotojas gali pasirinkti vieną iš keturių pasirinkimų:
 
 Jei vartotojas pasirenka (1-3) funcijas, tai ekrane yra atspausdinama kiekvieno studento saugojimo atmintyje adresas.
 
-<img src="Vieta-atmintyje.png" alt="Vieta atmintyje" width="500"/>
+<img src="nuotraukos/Vieta-atmintyje.png" alt="Vieta atmintyje" width="500"/>
 
 Įvedus duomenis, vartotojas gali pasirinkti, pagal kokį kriterijų nori surušiuoti studentų duomenis į failus vargsiukai.txt ir kietiakai.txt. 
 1. Pagal vidurkį.
@@ -94,7 +94,7 @@ Matavome 3 dalykus:
 |1 000 000       |   1.289 s   |   0.114 s  |  0.705 s  |    2.108 s     |
 |10 000 000      |  12.786 s   |  1.407 s   |   8.59 s  |    22.783 s    |
 
-<img src="grafas.png" alt="grafikas" width="600"/>
+<img src="nuotraukos/grafas.png" alt="grafikas" width="600"/>
 
 ### Išvados
 
@@ -112,6 +112,8 @@ Abejoms versijoms atlikus spartos tyrimą, matome, kad visais atvejais *Vector* 
 |1 000 000       |    0.044 s   |    0.138 s   |    0.025 s   |
 |10 000 000      |    0.465 s   |    2.218 s   |    0.180 s   |
 
+<img src="nuotraukos/strategijos_vector.png" alt="Vector rušiavimo strategijos" width="600"/>
+
 ### List versija
 
 | Įrašų skaičius | 1 strategija | 2 strategija | 3 strategija |
@@ -122,4 +124,4 @@ Abejoms versijoms atlikus spartos tyrimą, matome, kad visais atvejais *Vector* 
 |1 000 000       |    0.114 s   |    0.672 s   |    0.079 s   |
 |10 000 000      |    1.407 s   |   12.166s    |    1.063 s   |
 
-
+<img src="nuotraukos/strategijos_list.png" alt="List rušiavimo strategijos" width="600"/>
