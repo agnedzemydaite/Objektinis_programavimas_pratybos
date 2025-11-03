@@ -1,9 +1,34 @@
 # Studentų galutinio įvertinimo skaičiavimo programa
-## Programos aprašymas
-V0.3 turi 2 programos versijas: vector ir list. Programos versijos skiriasi tik tuo, kad naudojami skirtingi konteineriai, saugant duomenis.
-
-Programos tikslas: apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formulę:
+## Programos tikslas
+Apskaičiuoti pateiktų studentų galutinį įvertinimą, pagal nurodytą formulę:
 ### galutinis = 0.4 * vidurkis/mediana + 0.6 * egzaminas
+
+## Programos versijos
+### Versija 0.1:
+- Programa leidžia įvesti studentų duomenis rankiniu būdu arba atsitiktinai sugeneruoti jų balus, taip pat juos nuskaityti iš failo.
+- Galima pasirinkti, kaip bus pateikiamas galutinis balas: vidurkis, mediana arba abu variantai.
+- Rezultatus galima surikiuoti pagal studentų vardus arba pavardes.
+
+### Versija 0.2 – patobulinta 0.1 versija:
+- Pridėta galimybė generuoti studentų duomenų failus.
+- Studentus galima suskirstyti į dvi grupes pagal galutinį balą.
+- Įtrauktas pasirinkimas rikiuoti rezultatus pagal galutinį įvertinimą.
+
+### Versija 0.3 – patobulinta 0.2 versija:
+- Pridėta funkcija, kuri atspausdina rankiniu būdu įvestų studentų vietą atmintyje.
+- Sukurtos dvi atskiros programos versijos: list ir vector.
+-Atlikta konteinerių spartos analizė.
+
+### Versija 1.0 – patobulinta 0.3 versija:
+- Pridėtos dvi papildomos studentų rūšiavimo į dvi gropes strategijos.
+- Atlikta studentų rūšiavimo spartos analizė.
+
+## Išsamus galutinės versijos veikimo principas
+
+#### Pasirinkimas generuoti failus
+
+<img src="nuotraukos/Vieta-atmintyje.png" alt="Vieta atmintyje" width="500"/>
+
 
 Programa sugeneruoja 5 atsitiktinius studentų sąrašų failus, sudarytus iš: 1 000, 10 000, 100 000, 1 000 000, 10 000 000 įrašų.
 
