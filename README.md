@@ -184,7 +184,7 @@ Lyginant <em>vector</em> ir <em>list</em> konteirių spartą, matome, kad visose
 - Git - paskirstytos versijų kontrolės sistema
 
 #### Programos įdiegimo žingsniai:
-- Įsitikinti, kad kompiuteryje turite C++ kompiliatorių, cmake, make ir github, jei neturite - įsidiekite.
+- Įsitikinti, kad kompiuteryje turite C++ kompiliatorių, cmake, make ir git, jei neturite - įsidiekite.
 - Atsidarykite komandinę eilutę (terminalą) savo kompiuteryje ir įveskite šias komandas:
   -  `git clone -b v1.0 https://github.com/agnedzemydaite/Objektinis_programavimas_pratybos.git`
   -  `cd Objektinis_programavimas_pratybos`
